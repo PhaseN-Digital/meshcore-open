@@ -2,10 +2,10 @@
 name = "meshcore"
 compatibility_date = "2025-10-08"
 
-[assets]
-directory = "build/web"
-
 routes = [
   { pattern = "meshcore.phasen.digital", custom_domain = true }
 ]
+
+[assets]
+directory = "build/web"
 
