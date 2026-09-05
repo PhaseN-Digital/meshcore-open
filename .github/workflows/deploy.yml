@@ -16,8 +16,10 @@ jobs:
         uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
-          # Match local development version which provides Dart 3.11.0
-          flutter-version: '3.41.2'
+          # 3.41.2 (Dart 3.11.0) is missing ReorderableListView.builder's
+          # onReorderItem parameter used in channels_screen.dart and
+          # path_editor_sheet.dart; 3.47.2 has it and builds clean locally.
+          flutter-version: '3.47.2'
 
       - name: Setup Bun
         uses: oven-sh/setup-bun@v2
