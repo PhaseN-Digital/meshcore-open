@@ -30,6 +30,14 @@ jobs:
       - name: Build Web
         run: bun run build
 
+      - name: Verify web build succeeded
+        run: |
+          if [ ! -f build/web/main.dart.js ]; then
+            echo "::error::flutter build web did not produce build/web/main.dart.js — build_pipe swallows the underlying flutter failure, so check .flutter_build_pipe/logs/ below for the real error."
+            find .flutter_build_pipe/logs -name "*.log" -exec echo "--- {} ---" \; -exec cat {} \;
+            exit 1
+          fi
+
       - name: Deploy to Cloudflare
         uses: cloudflare/wrangler-action@v3
         with:
